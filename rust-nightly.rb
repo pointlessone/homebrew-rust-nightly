@@ -75,7 +75,7 @@ class RustNightly < Formula
   end
 
   def install_name_tool(path, old)
-    pattern = 'x86_64-apple-darwin/stage1/lib/rustlib/x86_64-apple-darwin'
+    pattern = %r(x86_64-apple-darwin/stage\d+/lib/rustlib/x86_64-apple-darwin)
     if path.match(pattern)
       new = old.gsub(pattern, prefix)
       system("install_name_tool -change '#{old}' '#{new}' '#{path}'")
